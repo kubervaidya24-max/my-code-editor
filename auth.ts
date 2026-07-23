@@ -2,7 +2,7 @@ import NextAuth from "next-auth";
 import {PrismaAdapter} from "@auth/prisma-adapter";
 import authConfig from "./auth.config";
 import { db } from "./lib/generated/db";
-import { getAccountByUserID, getUserById } from "./features/auth/actions";
+
 
 export const {auth, handlers, signIn, signOut} = NextAuth({
   callbacks:{
@@ -15,10 +15,10 @@ export const {auth, handlers, signIn, signOut} = NextAuth({
     async jwt({token, user, account}) {
       if(!token.sub) return token;
 
-      const existingUser = await getUserById(token.sub);
+      const existingUser = await db.user.findUnique({ where: { id: token.sub } });
       if(!existingUser) return token;
 
-      const existingAccount = await getAccountByUserID(token.sub);
+      const existingAccount = await db.account.findFirst({ where: { userId: token.sub } });
 
       token.name = existingUser.name;
       token.email = existingUser.email;

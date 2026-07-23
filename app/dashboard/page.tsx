@@ -19,7 +19,7 @@ const Page = async() => {
         playgrounds && playgrounds.length === 0 ? (<EmptyState title='No projects Found' description='Create a new Project to get started' imageSrc='/empty-state.svg'/>) : (
             // todo add playground table
             <ProjectTable
-            // @ts-ignore
+            // @ts-expect-error types not fully aligned yet
             // TODO: NEED TO UPDATE THE TYPES OF THE PLAYGROUND
                 projects={playgrounds || []}
                 onDeleteProject={deleteProjectById}
