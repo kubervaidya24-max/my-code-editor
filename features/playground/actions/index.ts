@@ -1,7 +1,7 @@
 "use server";
 import { currentUser } from "@/features/auth/actions";
 import { db } from "@/lib/db";
-import type { TemplateFolder } from "@/features/playground/lib/path-to-json";
+import { TemplateFolder } from "../lib/path-to-json";
 import { revalidatePath } from "next/cache";
 
 

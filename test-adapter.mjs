@@ -1,0 +1,1 @@
+import { PrismaClient } from "@prisma/client"; import { PrismaAdapter } from "@auth/prisma-adapter"; const p = new PrismaClient(); const adapter = PrismaAdapter(p); console.log("Adapter:", Object.keys(adapter)); adapter.createUser({ name: "Test", email: "test@example.com" }).then(console.log).catch(console.error).finally(() => p.$disconnect());
