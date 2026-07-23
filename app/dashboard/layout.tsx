@@ -20,7 +20,7 @@ export default async function DashboardLayout({
   };
 
   const formattedPlaygroundData =
-    playgroundData?.map((playground: any) => ({
+    playgroundData?.map((playground: { id: string; title: string; Starmark?: { isMarked: boolean }[]; template: string; [key: string]: unknown }) => ({
       id: playground.id,
       name: playground.title,
       starred: playground.Starmark?.[0]?.isMarked || false,
